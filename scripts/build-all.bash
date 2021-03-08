@@ -16,18 +16,19 @@ for platform in "${platforms[@]}" ; do
     GOOS=${platform_split[0]}
     GOARCH=${platform_split[1]}
     output_name=$package_name'-v'$version'-'$GOOS'-'$GOARCH
+    file_name=$package_name
     if [ $GOOS = "windows" ]; then
-        output_name+='.exe'
+        file_name+='.exe'
     fi
 
     echo "building ${output_name}"
-    env GOOS=$GOOS GOARCH=$GOARCH go build -o ./scripts/builds/$output_name $package
+    env GOOS=$GOOS GOARCH=$GOARCH go build -o ./scripts/builds/$file_name $package
     if [ $? -ne 0 ]; then
         echo 'An error has occurred! Aborting the script execution...'
         exit 1
     fi
     cd ./scripts/builds/
-    tar -czf $output_name.tgz $output_name
-    rm $output_name
+    tar -czf $output_name.tgz $file_name
+    rm $file_name
     cd ../../
 done
