@@ -12,6 +12,6 @@
     "goBinary": {
         "name": "gotailwindcss",
         "path": "./bin",
-        "url": "https://github.com/allain/tailwind/releases/download/gotailwindcss_{{version}}_{{platform}}_{{arch}}.tar.gz"
+        "url": "https://github.com/allain/tailwind/releases/download/v{{version}}/gotailwindcss-v{{version}}-{{platform}}-{{arch}}.tgz"
     }
 }
