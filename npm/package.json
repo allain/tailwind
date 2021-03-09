@@ -2,12 +2,16 @@
     "name": "twbuild",
     "version": "0.1.0",
     "description": "lightning fast tailwind css processor written in go",
+    "bin": {
+        "twbuild": "./src/bin.mjs"
+    },
     "scripts": {
         "postinstall": "go-npm install",
         "postuninstall": "go-npm uninstall"
     },
     "dependencies": {
-        "go-npm": "^0.1.9"
+        "go-npm": "^0.1.9",
+        "minimist": "^1.2.5"
     },
     "goBinary": {
         "name": "gotailwindcss",
