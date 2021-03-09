@@ -7,21 +7,22 @@ const asArray = x => Array.isArray(x) ? x : [x]
 
 function findBin() {
     const rootTwDir = path.dirname(path.dirname(url.fileURLToPath(import.meta.url)))
+    return path.join(rootTwDir, 'node_modules', '.bin', 'gotailwindcss')
+    // const
+    // // discover directory into which the binary will be installed
+    // const result = cp.spawnSync('npm', ['bin'], { cwd: rootTwDir })
+    // if (result.error) throw new Error(result.error)
 
-    // discover directory into which the binary will be installed
-    const result = cp.spawnSync('npm', ['bin'], { cwd: rootTwDir })
-    if (result.error) throw new Error(result.error)
+    // const binDir = result.stdout.toString('utf-8').trim()
+    // const pathToBin = path.join(binDir, 'gotailwindcss')
+    // if (!fs.existsSync(pathToBin)) {
+    //     // perform an npm install if the binary is not installed
+    //     const result = cp.spawnSync('npm', ['install'], { cwd: rootTwDir, stdio: 'inherit' })
+    //     if (result.error) throw new Error(result.error)
+    // }
+    // if (!fs.existsSync(pathToBin)) throw new Error('unable to install gotailwindcss')
 
-    const binDir = result.stdout.toString('utf-8').trim()
-    const pathToBin = path.join(binDir, 'gotailwindcss')
-    if (!fs.existsSync(pathToBin)) {
-        // perform an npm install if the binary is not installed
-        const result = cp.spawnSync('npm', ['install'], { cwd: rootTwDir, stdio: 'inherit' })
-        if (result.error) throw new Error(result.error)
-    }
-    if (!fs.existsSync(pathToBin)) throw new Error('unable to install gotailwindcss')
-
-    return pathToBin
+    // return pathToBin
 }
 
 export function build(cssFiles, options = {}) {
@@ -45,7 +46,6 @@ export function build(cssFiles, options = {}) {
     const pathToBin = findBin()
     return new Promise((resolve, reject) => {
         const child = cp.spawn(pathToBin, args, { stdio: 'inherit' })
-
         child.on('error', reject)
         child.on('exit', resolve)
         child.on('close', resolve(0))
