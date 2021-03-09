@@ -1,21 +1,28 @@
 {
-    "name": "twbuild",
-    "version": "0.1.0",
-    "description": "lightning fast tailwind css processor written in go",
-    "bin": {
-        "twbuild": "./src/bin.mjs"
-    },
-    "scripts": {
-        "postinstall": "go-npm install",
-        "postuninstall": "go-npm uninstall"
-    },
-    "dependencies": {
-        "go-npm": "^0.1.9",
-        "minimist": "^1.2.5"
-    },
-    "goBinary": {
-        "name": "gotailwindcss",
-        "path": "./bin",
-        "url": "https://github.com/allain/tailwind/releases/download/v{{version}}/gotailwindcss-v{{version}}-{{platform}}-{{arch}}.tgz"
-    }
+  "name": "twbuild",
+  "version": "0.1.0",
+  "description": "lightning fast tailwind css processor written in go",
+  "bin": {
+    "twbuild": "./src/bin.mjs"
+  },
+  "scripts": {
+    "test": "mocha './test/**/*.mjs'",
+    "postinstall": "go-npm install",
+    "postuninstall": "go-npm uninstall"
+  },
+  "dependencies": {
+    "execa": "^5.0.0",
+    "go-npm": "^0.1.9",
+    "minimist": "^1.2.5"
+  },
+  "goBinary": {
+    "name": "gotailwindcss",
+    "path": "./bin",
+    "url": "https://github.com/allain/tailwind/releases/download/v{{version}}/gotailwindcss-v{{version}}-{{platform}}-{{arch}}.tgz"
+  },
+  "devDependencies": {
+    "@esm-bundle/chai": "^4.3.3",
+    "@types/mocha": "^8.2.1",
+    "mocha": "^8.3.1"
+  }
 }
