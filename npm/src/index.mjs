@@ -31,7 +31,7 @@ export async function build(cssFiles, options = {}) {
     args = [...args, '--purgescan', purgeScan[0], '--purgeext', purgeExt]
   }
 
-  args = [...args, cssFiles]
+  args = [...args, ...cssFiles]
 
   let result = await tryRunGoTailwindCSS(args).catch((err) => err)
 
